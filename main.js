@@ -1,28 +1,38 @@
 const cohuttaSprings = Object.create({}, {
 
-    business: {
-        value: "cohuttaSprings"
+    name: {
+        value: "CohuttaSprings",
+        enumerable: true,
+        writeable: true
     },
     employmentStart: {
-        value: "05-20-2005"
+        value: "05-20-2005",
+        enumerable: true,
+        writeable: true
     },
     employmentEnd: {
-        value: "08-20-2008"
+        value: "08-20-2008",
+        enumerable: true,
+        writeable: true
     },
     funScore: {
-        value: 8
+        value: 8,
+        enumerable: true,
+        writeable: true
     },
     favoriteCoworker: {
-        value: "Nardia"
+        value: "Nardia",
+        enumerable: true,
+        writeable: true
     }
 
 })
 
-const JobMaker = (business, employmentStart, employmentEnd, funScore, favoriteCoworker) => {
-    
+const JobMaker = (name, employmentStart, employmentEnd, funScore, favoriteCoworker) => {
+
     const obj = Object.create({}, {
-        business: {
-            value: business,
+        name: {
+            value: name,
             enumerable: true,
             writeable: true
         },
@@ -52,16 +62,51 @@ const JobMaker = (business, employmentStart, employmentEnd, funScore, favoriteCo
 }
 
 const sonicDriveIn = JobMaker("SonicDriveIn", "01-01-2008", "06-20-2012", 7, "Nola");
-const UnitedStatesNavy = JobMaker("UnitedStatesNavy", "01-01-2014", "06-20-2016", 6, "Suppo");
-const LomaLinda = JobMaker("LomaLinda", "03-01-2008", "04-20-2012", 6, "Chuck");
+const unitedStatesNavy = JobMaker("UnitedStatesNavy", "01-01-2014", "06-20-2016", 6, "Suppo");
+const lomaLinda = JobMaker("LomaLinda", "03-01-2008", "04-20-2012", 6, "Chuck");
 
-const jobs = {sonicDriveIn, cohuttaSprings, UnitedStatesNavy, LomaLinda};
+const jobs = {
+    sonicDriveIn,
+    cohuttaSprings,
+    unitedStatesNavy,
+    lomaLinda
+};
+
+const myJobsArticle = document.createElement('article');
 
 for (prp in jobs) {
     let mem = jobs[prp];
     if (typeof mem === 'object') {
-        for (cPrp in mem) {
-            console.log(`The ${cPrp} property of ${prp} is ${mem[cPrp]} `)
-        }
+
+        const jobArticle = document.createElement('article');
+        jobArticle.id = mem.name;
+        document.body.appendChild(jobArticle)
+
+        const newHeader = document.createElement('H2');
+        newHeader.innerHTML = prp;
+        document.getElementById(jobArticle.id).appendChild(newHeader);
+
+        const jobAttributeList = document.createElement('ul');
+        
+        const datesWorked = document.createElement('li');
+        datesWorked.innerHTML = `Dates Worked: ${mem.employmentStart} - ${mem.employmentEnd}`;
+        
+        const funScore = document.createElement('li');
+        funScore.innerHTML = `Fun Score: ${mem.funScore}`;
+        
+        const favoriteCoworker = document.createElement('li');
+        favoriteCoworker.innerHTML = `Favorite Coworker: ${mem.favoriteCoworker}`;
+
+        jobAttributeList.appendChild(datesWorked);
+        jobAttributeList.appendChild(funScore);
+        jobAttributeList.appendChild(favoriteCoworker);
+
+        document.getElementById(jobArticle.id).appendChild(jobAttributeList);
+
+        // for (cPrp in mem) {
+        //     console.log(`The ${cPrp} property of ${prp} is ${mem[cPrp]} `)
+        // }
     }
 }
+
+const secondHeader = document.createElement('LI');
