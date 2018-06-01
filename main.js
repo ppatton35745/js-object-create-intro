@@ -1,32 +1,4 @@
-const cohuttaSprings = Object.create({}, {
 
-    name: {
-        value: "Cohutta Springs",
-        enumerable: true,
-        writeable: true
-    },
-    employmentStart: {
-        value: "05-20-2005",
-        enumerable: true,
-        writeable: true
-    },
-    employmentEnd: {
-        value: "08-20-2008",
-        enumerable: true,
-        writeable: true
-    },
-    funScore: {
-        value: 8,
-        enumerable: true,
-        writeable: true
-    },
-    favoriteCoworker: {
-        value: "Nardia",
-        enumerable: true,
-        writeable: true
-    }
-
-})
 
 const JobMaker = (name, employmentStart, employmentEnd, funScore, favoriteCoworker) => {
 
@@ -61,52 +33,54 @@ const JobMaker = (name, employmentStart, employmentEnd, funScore, favoriteCowork
     return obj;
 }
 
-const sonicDriveIn = JobMaker("Sonic DriveIn", "01-01-2008", "06-20-2012", 7, "Nola");
-const unitedStatesNavy = JobMaker("United States Navy", "01-01-2014", "06-20-2016", 6, "Suppo");
-const lomaLinda = JobMaker("Loma Linda", "03-01-2008", "04-20-2012", 6, "Chuck");
+const WriteJobArticles = (jobs) => {
+    if (jobs.length > 0) {
 
-const jobs = {
-    sonicDriveIn,
-    cohuttaSprings,
-    unitedStatesNavy,
-    lomaLinda
-};
-
-const myJobsArticle = document.createElement('article');
-
-for (prp in jobs) {
-    let mem = jobs[prp];
-    if (typeof mem === 'object') {
-
-        const jobArticle = document.createElement('article');
-        jobArticle.id = mem.name;
-        document.body.appendChild(jobArticle);
-
-        const newHeader = document.createElement('H2');
-        newHeader.innerHTML = mem.name;
-        document.getElementById(jobArticle.id).appendChild(newHeader);
-
-        const jobAttributeList = document.createElement('ul');
+        for (prp in jobs) {
+            let mem = jobs[prp];
+            if (typeof mem === 'object') {
         
-        const datesWorked = document.createElement('li');
-        datesWorked.innerHTML = `Dates Worked: ${mem.employmentStart} - ${mem.employmentEnd}`;
+                //Create the article Element
+                
+                document.body.appendChild(jobArticle = document.createElement('article'));
+                jobArticle.id = mem.name;
+                const art = document.getElementById(jobArticle.id);
         
-        const funScore = document.createElement('li');
-        funScore.innerHTML = `Fun Score: ${mem.funScore}`;
+                //Create header for article
+                
+                art.appendChild(newHeader = document.createElement('H2'));
+                newHeader.innerHTML = mem.name;
         
-        const favoriteCoworker = document.createElement('li');
-        favoriteCoworker.innerHTML = `Favorite Coworker: ${mem.favoriteCoworker}`;
+                //Create list for job attributes
+        
+                art.appendChild(jobAttributeList = document.createElement('ul'));
+                jobAttributeList.id = mem.name + "List";
+                const list = art.getElementById(jobAttributeList.id);
+        
+                //Add list items to ul
+        
+                list.appendChild(datesWorked = document.createElement('li'));
+                datesWorked.innerHTML = `Dates Worked: ${mem.employmentStart} - ${mem.employmentEnd}`;
+        
+                list.appendChild(funScore = document.createElement('li'));
+                funScore.innerHTML = `Fun Score: ${mem.funScore}`;
+        
+                list.appendChild(favoriteCoworker = document.createElement('li'));
+                favoriteCoworker.innerHTML = `Favorite Coworker: ${mem.favoriteCoworker}`;
+            }
+        }
 
-        jobAttributeList.appendChild(datesWorked);
-        jobAttributeList.appendChild(funScore);
-        jobAttributeList.appendChild(favoriteCoworker);
-
-        document.getElementById(jobArticle.id).appendChild(jobAttributeList);
-
-        // for (cPrp in mem) {
-        //     console.log(`The ${cPrp} property of ${prp} is ${mem[cPrp]} `)
-        // }
     }
 }
 
-const secondHeader = document.createElement('LI');
+const jobs = {
+    sonicDriveIn = JobMaker("Sonic DriveIn", "01-01-2008", "06-20-2012", 7, "Nola"),
+    cohuttaSprings = JobMaker("Cohutta Springs", "05-01-2008", "09-20-2012", 8, "Nardia"),
+    unitedStatesNavy = JobMaker("United States Navy", "01-01-2014", "06-20-2016", 6, "Suppo"),
+    lomaLinda = JobMaker("Loma Linda", "03-01-2008", "04-20-2012", 6, "Chuck")
+};
+
+WriteJobArticles(jobs);
+
+
+
