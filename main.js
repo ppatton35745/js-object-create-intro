@@ -1,7 +1,7 @@
 const cohuttaSprings = Object.create({}, {
 
     name: {
-        value: "CohuttaSprings",
+        value: "Cohutta Springs",
         enumerable: true,
         writeable: true
     },
@@ -61,9 +61,9 @@ const JobMaker = (name, employmentStart, employmentEnd, funScore, favoriteCowork
     return obj;
 }
 
-const sonicDriveIn = JobMaker("SonicDriveIn", "01-01-2008", "06-20-2012", 7, "Nola");
-const unitedStatesNavy = JobMaker("UnitedStatesNavy", "01-01-2014", "06-20-2016", 6, "Suppo");
-const lomaLinda = JobMaker("LomaLinda", "03-01-2008", "04-20-2012", 6, "Chuck");
+const sonicDriveIn = JobMaker("Sonic DriveIn", "01-01-2008", "06-20-2012", 7, "Nola");
+const unitedStatesNavy = JobMaker("United States Navy", "01-01-2014", "06-20-2016", 6, "Suppo");
+const lomaLinda = JobMaker("Loma Linda", "03-01-2008", "04-20-2012", 6, "Chuck");
 
 const jobs = {
     sonicDriveIn,
@@ -80,10 +80,10 @@ for (prp in jobs) {
 
         const jobArticle = document.createElement('article');
         jobArticle.id = mem.name;
-        document.body.appendChild(jobArticle)
+        document.body.appendChild(jobArticle);
 
         const newHeader = document.createElement('H2');
-        newHeader.innerHTML = prp;
+        newHeader.innerHTML = mem.name;
         document.getElementById(jobArticle.id).appendChild(newHeader);
 
         const jobAttributeList = document.createElement('ul');
