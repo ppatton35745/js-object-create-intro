@@ -34,6 +34,7 @@ const JobMaker = (name, employmentStart, employmentEnd, funScore, favoriteCowork
 }
 
 const WriteJobArticles = (jobs) => {
+
     if (jobs.length > 0) {
 
         for (prp in jobs) {
@@ -42,45 +43,63 @@ const WriteJobArticles = (jobs) => {
         
                 //Create the article Element
                 
-                document.body.appendChild(jobArticle = document.createElement('article'));
-                jobArticle.id = mem.name;
+                const jobArticle = document.createElement('article')
+                jobArticle.id = mem.name.replace(/\s/g,'');
+                jobArticle.className = "jobArticle";
+                document.body.appendChild(jobArticle);
                 const art = document.getElementById(jobArticle.id);
         
                 //Create header for article
                 
-                art.appendChild(newHeader = document.createElement('H2'));
+                const newHeader = document.createElement('H2');
                 newHeader.innerHTML = mem.name;
-        
+                art.appendChild(newHeader);
+               
                 //Create list for job attributes
         
-                art.appendChild(jobAttributeList = document.createElement('ul'));
-                jobAttributeList.id = mem.name + "List";
-                const list = art.getElementById(jobAttributeList.id);
+                const jobAttributeList = document.createElement('ul');
+                jobAttributeList.id = (mem.name + "List").replace(/\s/g,'');
+                jobAttributeList.className = "jobArticle jobAttributeList";
+                art.appendChild(jobAttributeList);
+                const list = document.getElementById(jobAttributeList.id);
         
                 //Add list items to ul
         
-                list.appendChild(datesWorked = document.createElement('li'));
+                const datesWorked = document.createElement('li');
                 datesWorked.innerHTML = `Dates Worked: ${mem.employmentStart} - ${mem.employmentEnd}`;
-        
-                list.appendChild(funScore = document.createElement('li'));
+                datesWorked.className = "jobArticle jobAttributeList datesWorked";
+                list.appendChild(datesWorked);
+                
+                const funScore = document.createElement('li');
                 funScore.innerHTML = `Fun Score: ${mem.funScore}`;
-        
-                list.appendChild(favoriteCoworker = document.createElement('li'));
+                funScore.className = "jobArticle jobAttributeList funScore";
+                list.appendChild(funScore);
+                
+                const favoriteCoworker = document.createElement('li');
                 favoriteCoworker.innerHTML = `Favorite Coworker: ${mem.favoriteCoworker}`;
+                favoriteCoworker.className = "jobArticle jobAttributeList favoriteCoworker";
+                list.appendChild(favoriteCoworker);
+                
             }
         }
 
     }
 }
 
-const jobs = {
-    sonicDriveIn = JobMaker("Sonic DriveIn", "01-01-2008", "06-20-2012", 7, "Nola"),
-    cohuttaSprings = JobMaker("Cohutta Springs", "05-01-2008", "09-20-2012", 8, "Nardia"),
-    unitedStatesNavy = JobMaker("United States Navy", "01-01-2014", "06-20-2016", 6, "Suppo"),
-    lomaLinda = JobMaker("Loma Linda", "03-01-2008", "04-20-2012", 6, "Chuck")
-};
+const StyleJobArticlesPage = () => {
+    const body = document.querySelectorAll("body")[0];
+    body.style.color = blue;
+}
+
+const jobs = [
+    JobMaker("Sonic DriveIn", "01-01-2008", "06-20-2012", 7, "Nola"),
+    JobMaker("Cohutta Springs", "05-01-2008", "09-20-2012", 8, "Nardia"),
+    JobMaker("United States Navy", "01-01-2014", "06-20-2016", 6, "Suppo"),
+    JobMaker("Loma Linda", "03-01-2008", "04-20-2012", 6, "Chuck")
+];
 
 WriteJobArticles(jobs);
-
+jobArticle = "now I'm this";
+console.log(jobArticle);
 
 
