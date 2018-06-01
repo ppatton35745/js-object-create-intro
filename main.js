@@ -22,19 +22,29 @@ const JobMaker = (business, employmentStart, employmentEnd, funScore, favoriteCo
     
     const obj = Object.create({}, {
         business: {
-            value: business
+            value: business,
+            enumerable: true,
+            writeable: true
         },
         employmentStart: {
-            value: employmentStart
+            value: employmentStart,
+            enumerable: true,
+            writeable: true
         },
         employmentEnd: {
-            value: employmentEnd
+            value: employmentEnd,
+            enumerable: true,
+            writeable: true
         },
         funScore: {
-            value: funScore
+            value: funScore,
+            enumerable: true,
+            writeable: true
         },
         favoriteCoworker: {
-            value: favoriteCoworker
+            value: favoriteCoworker,
+            enumerable: true,
+            writeable: true
         }
     })
 
@@ -42,6 +52,16 @@ const JobMaker = (business, employmentStart, employmentEnd, funScore, favoriteCo
 }
 
 const sonicDriveIn = JobMaker("SonicDriveIn", "01-01-2008", "06-20-2012", 7, "Nola");
+const UnitedStatesNavy = JobMaker("UnitedStatesNavy", "01-01-2014", "06-20-2016", 6, "Suppo");
+const LomaLinda = JobMaker("LomaLinda", "03-01-2008", "04-20-2012", 6, "Chuck");
 
-console.log(cohuttaSprings);
-console.log(JobMaker);
+const jobs = {sonicDriveIn, cohuttaSprings, UnitedStatesNavy, LomaLinda};
+
+for (prp in jobs) {
+    let mem = jobs[prp];
+    if (typeof mem === 'object') {
+        for (cPrp in mem) {
+            console.log(`The ${cPrp} property of ${prp} is ${mem[cPrp]} `)
+        }
+    }
+}
